@@ -10,3 +10,7 @@
 	path = Libraries/jira
 	url = https://github.com/pycontribs/jira
 	branch = master
+[submodule "Tools/super-productivity"]
+	path = Tools/super-productivity
+	url = https://github.com/johannesjo/super-productivity
+	branch = master
