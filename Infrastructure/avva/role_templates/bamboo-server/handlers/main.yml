@@ -1,9 +1,0 @@
----
-
-- name: enable_bamboo
-  command: systemctl enable bamboo.service
-
-- name: restart_bamboo
-  command: systemctl restart bamboo.service
-  # Will fail if we do this before the systemd is booted into systemd
-  ignore_errors: true

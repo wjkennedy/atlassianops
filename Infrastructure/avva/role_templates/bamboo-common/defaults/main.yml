@@ -1,6 +1,0 @@
----
-
-bamboo_version: "BAMBOO_VER"
-bamboo_base: /opt/atlassian/bamboo"
-bamboo_dir: "atlassian-bamboo-{{bamboo_version}}"
-bamboo_tar: "atlassian-bamboo-{{bamboo_version}}.tar.gz"

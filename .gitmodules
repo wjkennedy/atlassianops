@@ -2,3 +2,11 @@
 	path = AtlassianProducts/atlassian-versions
 	url = https://bitbucket.org/wkennedy/atlassian-versions
 	branch = master
+[submodule "Infrastructure/avva"]
+	path = Infrastructure/avva
+	url = https://bitbucket.org/wkennedy/avva
+	branch = master
+[submodule "Libraries/jira"]
+	path = Libraries/jira
+	url = https://github.com/pycontribs/jira
+	branch = master

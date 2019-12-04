@@ -1,5 +1,0 @@
----
-
-- name: restart_psql
-  command: service postgresql restart
-  ignore_errors: false
