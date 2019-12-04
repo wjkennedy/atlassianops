@@ -1,0 +1,12 @@
+---
+
+# nfsserver:   the nfs server to mount from
+# nfspath:     the remote filesystem to mount from the nfs server
+# nfsmount:    the directory where you want to mount the filesystem.
+# nfsoptions:  options to use when mounting the filesystem. If not
+#              defined, `rw,sync` will be used.
+
+nfsserver: dataserver
+nfspath: /shared/
+nfsmount: /opt/atlassian/
+nfsoptions: rw,sync

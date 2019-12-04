@@ -1,0 +1,86 @@
+---
+- hostname:
+    name: crowd
+
+- name: Install Crowd dependencies
+  apt: pkg=git,curl state=installed
+
+- name: Create app directories
+  command:
+          mkdir -p /opt/atlassian/crowd
+          mkdir -p /var/atlassian/crowd
+
+- name: Fetch Crowd
+  get_url: 
+    url=https://www.atlassian.com/software/crowd/downloads/binary/{{crowd_tar}}
+    dest={{crowd_base}}/{{crowd_tar}}
+
+- name: Unpack Crowd
+  command: 
+    creates={{crowd_dir}}
+    chdir={{crowd_base}}
+    tar zxf {{crowd_tar}}
+
+
+- name: Symlink install to current
+  command:
+    chdir={{crowd_base}}
+    ln -sf {{crowd_dir}} current
+
+- name: Create user
+  user: 
+    name={{crowd_user}}
+    home={{crowd_home}}
+    createhome=true
+
+
+- name: Fix permissions for working directories
+  file: path={{crowd_base}}/{{crowd_dir}}/{{item}} owner={{crowd_user}} state=directory recurse=true
+  with_items:
+    - logs
+    - temp
+    - work
+
+- file:
+    path: /opt/atlassian/crowd/current/start_crowd.sh
+    owner: crowd
+    group: crowd
+    mode: "u+rwx,g-rx,o-x"
+
+- file:
+    path: /opt/atlassian/crowd/current/apache-tomcat/bin/startup.sh
+    owner: crowd
+    group: crowd
+    mode: "u+rwx,g-rx,o-x"
+
+
+
+- name: Create config directory
+  file: path={{crowd_home}}/shared/ state=directory owner={{crowd_user}}
+
+- name: Install default config
+  template: src="crowd-config.properties.j2" dest="{{crowd_home}}/shared/crowd-config.properties"
+
+
+- name: Correct Crowd home
+  blockinfile:
+          dest: /opt/atlassian/crowd/current/crowd-webapp/WEB-INF/classes/crowd-init.properties
+          marker: "# Managed with AVVA: https://bitbucket.org/wkennedy/avva/"
+          insertafter: "#crowd.home=/var/crowd"
+          content: |
+              crowd.home=/var/atlassian/crowd
+
+
+- name: Install systemd unit
+  template:
+    src=crowd.service.j2
+    dest=/etc/systemd/system/crowd.service
+  register: svc
+
+
+- name: Reload and enable service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: crowd
+

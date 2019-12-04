@@ -1,0 +1,20 @@
+---
+
+bitbucket_user: bitbucket
+
+bitbucket_version: "BITBUCKET_VER"
+
+bitbucket_dir: "atlassian-bitbucket-{{bitbucket_version}}"
+bitbucket_tar: "atlassian-bitbucket-{{bitbucket_version}}.tar.gz"
+
+bitbucket_base: "/opt/atlassian/bitbucket"
+bitbucket_home: "/var/atlassian/bitbucket/"
+
+bitbucket_db_host: localhost
+bitbucket_db: bitbucket
+bitbucket_db_user: bitbucket
+bitbucket_db_passwd: bitbucket
+
+bitbucket_setup: false
+
+bitbucket_admin_user: admin

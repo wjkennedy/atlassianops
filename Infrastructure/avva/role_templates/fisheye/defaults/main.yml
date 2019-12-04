@@ -1,0 +1,20 @@
+---
+
+fisheye_user: fisheye
+
+fisheye_version: "FISHEYE_VER"
+
+fisheye_dir: "fecru-{{fisheye_version}}"
+fisheye_tar: "fisheye-{{fisheye_version}}.zip"
+
+fisheye_base: /opt/atlassian/fisheye
+fisheye_home: /var/atlassian/fisheye
+
+fisheye_db_host: dataserver
+fisheye_db: fisheye
+fisheye_db_user: fisheye
+fisheye_db_passwd: fisheye
+
+fisheye_setup: false
+
+fisheye_admin_user: admin

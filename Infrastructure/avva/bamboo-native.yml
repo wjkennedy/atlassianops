@@ -1,0 +1,23 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - bamboo_version: "5.8.1"
+
+    - psql_db: bamboo
+
+    - docker_users:
+        - vagrant
+        - bamboo
+        - bamboo-agent
+
+    - bamboo_agent_capabilities:
+        - ['system.builder.command.docker', '/usr/bin/docker']
+        - ['system.builder.command.fig',    '/usr/local/bin/fig']
+
+  roles:
+    - debian-common
+    - docker
+    - bamboo-server
+    - bamboo-agent

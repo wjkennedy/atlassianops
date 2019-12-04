@@ -1,0 +1,30 @@
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.box = "debian/stretch64"
+
+  config.vm.network "public_network"
+
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "debian-systemd.yml"
+    ansible.verbose  = "vv"
+  end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "jiraservicedesk-vagrant.yml"
+    ansible.verbose  = "vv"
+  end
+
+  config.vm.hostname = "jira-service-desk"
+  config.vm.define  "jira-service-desk"
+
+end

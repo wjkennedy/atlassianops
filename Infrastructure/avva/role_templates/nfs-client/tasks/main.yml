@@ -1,0 +1,42 @@
+---
+# This task is used to mount a filesystem via NFS.
+# 
+# Variables defined in defaults/:
+# nfsserver:   the nfs server to mount from
+# nfspath:     the remote filesystem to mount from the nfs server
+# nfsmount:    the directory where you want to mount the filesystem.
+# nfsoptions:  options to use when mounting the filesystem. If not
+#              defined, `rw,sync` will be used.
+#
+# Please note that the task will check if the {{nfsmount}} directory
+# exists and create it otherwise.
+#
+
+- name: install nfs client
+  action: apt pkg=nfs-common state=present
+  tags:
+    - nfs
+
+- name: Ensure portmap is running 
+  action: service name=portmap state=started enabled=yes
+
+- name: Ensure rpcbind is running
+  action: service name=rpcbind state=started enabled=yes
+
+- name: Ensure {{nfsmount}} directory exists
+  action: file path={{nfsmount}} state=directory
+  tags: 
+    - nfs
+
+- name: configure /etc/fstab on clients
+  action: mount name={{nfsmount}} src={{nfsserver}}:{{nfspath}} fstype=nfs state=mounted
+  tags:
+    - nfs
+
+- mount:
+        path: /var/atlassian
+        src: dataserver:/shared/atlassian
+        fstype: nfs 
+        opts: defaults,nobootwait
+        state: present
+

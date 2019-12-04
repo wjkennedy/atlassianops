@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: confluence
+
+  roles:
+
+    - confluence
+

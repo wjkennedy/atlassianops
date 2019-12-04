@@ -1,0 +1,78 @@
+---
+- hostname:
+    name: jira
+
+- name: Create user
+  user: 
+    name={{jira_user}}
+    home={{jira_home}}
+    createhome=false
+
+- name: Install Jira dependencies
+  apt: pkg=git,curl state=installed
+
+
+# Happens in dataserver
+# See dataserver/tasks/main.yml and nfs-client/tasks/main.yml
+#- name: Create base directory
+#  file: path={{jira_base}} state=directory
+
+
+- name: Fetch Jira 
+  get_url: 
+    url=https://www.atlassian.com/software/jira/downloads/binary/{{jira_tar}}
+    dest={{jira_base}}/{{jira_tar}}
+
+
+- name: Unpack Jira 
+  command: 
+    creates={{jira_dir}}
+    chdir={{jira_base}}
+    tar zxf {{jira_tar}}
+
+
+- name: Symlink install to current
+  command:
+    chdir={{jira_base}}
+    ln -sf {{jira_dir}}-standalone current
+
+
+
+- name: Set JRE_HOME in setclasspath.sh
+  lineinfile:
+          path: /opt/atlassian/jira/current/bin/setclasspath.sh
+          insertbefore: BOF
+          line: "JRE_HOME=/usr/lib/jvm/oracle-java8-server-jre-amd64/jre"
+
+
+
+- name: Set JIRA_HOME in setenv.sh
+  lineinfile:
+          path: /opt/atlassian/jira/current/bin/setenv.sh
+          insertbefore: BOF
+          line: "JIRA_HOME=/var/atlassian/jira/"
+
+- name: Fix permissions for working directories
+  file: path={{jira_base}}/{{jira_dir}}/{{item}} owner={{jira_user}} state=directory recurse=true
+  with_items:
+    - logs
+    - temp
+    - work
+
+- name: Fix permissions for working directories
+  file: path={{jira_home}} owner={{jira_user}} state=directory recurse=true
+
+
+- name: Install systemd unit
+  template:
+    src=jira.service.j2
+    dest=/etc/systemd/system/jira.service
+  register: svc
+
+
+- name: Enable Jira service 
+  systemd:
+    name: jira
+    state: reloaded
+    enabled: yes
+

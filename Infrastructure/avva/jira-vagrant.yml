@@ -1,0 +1,10 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: jira
+
+  roles:
+
+    - jira

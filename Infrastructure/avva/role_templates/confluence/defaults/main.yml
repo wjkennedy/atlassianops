@@ -1,0 +1,20 @@
+---
+
+confluence_user: confluence
+
+confluence_version: "CONFLUENCE_VER"
+
+confluence_dir: "atlassian-confluence-{{confluence_version}}"
+confluence_tar: "atlassian-confluence-{{confluence_version}}.tar.gz"
+
+confluence_base: "/opt/atlassian/confluence"
+confluence_home: "/var/atlassian/confluence/"
+
+confluence_db_host: localhost
+confluence_db: confluence
+confluence_db_user: confluence
+confluence_db_passwd: confluence
+
+confluence_setup: false
+
+confluence_admin_user: admin

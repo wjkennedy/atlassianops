@@ -1,0 +1,52 @@
+---
+- name: Install Dataserver dependencies
+  apt: pkg=git,curl,nfs-kernel-server,nfs-common state=installed
+
+- name: make sure the mount drive has a filesystem
+  filesystem: fstype=ext4 dev={{ mountable_share_drive | default('/dev/sdb') }}
+
+- name: set mountpoints
+  mount: name=/shared src='/dev/sdb' fstype=auto opts=defaults dump=0 passno=2 state=mounted
+
+- name: copy /etc/exports
+  template: src=exports.j2 dest=/etc/exports owner=root group=root
+
+- name: restart nfs server
+  service: name=nfs-kernel-server state=restarted
+
+- lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication no'
+    line: "PasswordAuthentication yes"
+
+- name: restart ssh server
+  service: name=sshd state=restarted
+
+
+
+- file:
+    path: /shared/atlassian/{{ item }}                                                                                                                                                
+    state: directory                                                                                                                                                
+  with_items:                                                                                                                                                          
+        - jira
+        - bitbucket
+        - confluence
+        - bamboo
+        - crowd
+        - fecru
+
+
+- name: Create user
+  user: 
+    name={{ item }}
+    home=/shared/atlassian/{{ item }}
+    createhome=true
+    shell=/bin/bash
+  with_items:                                                                                                                                                          
+        - jira
+        - bitbucket
+        - confluence
+        - bamboo
+        - crowd
+        - fisheye
+        - crucible

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: fisheye
+
+
+  roles:
+
+    - fisheye
+

@@ -1,0 +1,59 @@
+---
+- hostname:
+        name: crucible
+
+- name: Install Crucible dependencies
+  apt: pkg=git,curl,unzip state=installed
+
+- name: Create base directory
+  file: path={{crucible_base}} state=directory
+
+- name: Fetch Crucible
+  get_url: 
+  url=https://www.atlassian.com/software/crucible/downloads/binary/{{crucible_tar}}
+    dest={{crucible_base}}/{{crucible_tar}}
+
+- name: Unpack Crucible
+  command: 
+    creates={{crucible_dir}}
+    chdir={{crucible_base}}
+    unzip {{crucible_tar}}
+
+
+- name: Create user
+  user: 
+    name={{crucible_user}}
+    home={{crucible_home}}
+    createhome=true
+
+
+- name: Fix permissions for working directories
+  file: path=/opt/atlassian owner={{crucible_user}} state=directory recurse=true
+
+- name: Fix permissions for working directories
+  file: path=/var/atlassian owner={{crucible_user}} state=directory recurse=true
+
+
+- name: Create config directory
+  file: path={{crucible_home}}/shared/ state=directory owner={{crucible_user}}
+
+
+- name: Symlink install to current
+  command:
+    chdir={{crucible_base}}
+    ln -sf {{crucible_dir}} current
+
+
+- name: Install systemd unit
+  template:
+    src=crucible.service.j2
+    dest=/etc/systemd/system/crucible.service
+  register: svc
+
+
+- name: Enable Crucible service
+  systemd:
+    name: crucible
+    state: reloaded
+    enabled: yes
+

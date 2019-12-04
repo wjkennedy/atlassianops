@@ -1,0 +1,14 @@
+[Unit]
+Description=Atlassian Fisheye/Crucible
+After=network-online.target
+
+[Service]
+User={{fisheye_user}}
+Group={{fisheye_user}}
+
+ExecStart={{fisheye_base}}/{{fisheye_dir}}/bin/fisheyectl.sh start
+Environment=FISHEYE_HOME={{fisheye_home}}
+
+
+[Install]
+WantedBy=multi-user.target

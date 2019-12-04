@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: crucible
+
+
+  roles:
+
+    - crucible
+

@@ -1,0 +1,20 @@
+---
+
+crowd_user: crowd
+
+crowd_version: "CROWD_VER"
+
+crowd_dir: "atlassian-crowd-{{crowd_version}}"
+crowd_tar: "atlassian-crowd-{{crowd_version}}.tar.gz"
+
+crowd_base: "/opt/atlassian/crowd"
+crowd_home: "/var/atlassian/crowd/"
+
+crowd_db_host: localhost
+crowd_db: crowd
+crowd_db_user: crowd
+crowd_db_passwd: crowd
+
+crowd_setup: false
+
+crowd_admin_user: admin

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: dataserver
+    - psql_localhost_method: trust
+
+  roles:
+
+    - dataserver
+    - postgres

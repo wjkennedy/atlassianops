@@ -1,0 +1,16 @@
+[Unit]
+Description=Atlassian Bitbucket Server
+After=network-online.target
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+User={{bitbucket_user}}
+Group={{bitbucket_user}}
+
+ExecStart={{bitbucket_base}}/current/bin/start-bitbucket.sh
+Environment=BITBUCKET_HOME={{bitbucket_home}} {% if bitbucket_setup %} JAVA_OPTS=-Datlassian.dev.mode=true {% endif %}
+
+
+[Install]
+WantedBy=multi-user.target

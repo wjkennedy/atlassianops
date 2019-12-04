@@ -1,0 +1,17 @@
+---
+
+crucible_user: crucible
+
+crucible_version: "CRUCIBLE_VER"
+
+crucible_dir: "fecru-{{crucible_version}}"
+crucible_tar: "crucible-{{crucible_version}}.zip"
+
+crucible_base: /opt/atlassian/crucible
+crucible_home: /var/atlassian/crucible
+
+crucible_db_host: dataserver
+crucible_db: crucible
+crucible_db_user: crucible
+crucible_db_passwd: crucible
+

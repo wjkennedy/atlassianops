@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Confluence Server
+After=network-online.target
+After=postgresql.service
+Requires=postgresql.service
+
+[Service]
+User={{confluence_user}}
+Group={{confluence_user}}
+
+ExecStart={{confluence_base}}/current/bin/start-confluence.sh
+Environment=CONFLUENCE_HOME={{confluence_home}} {% if confluence_setup %} JAVA_OPTS=-Datlassian.dev.mode=true {% endif %}
+
+[Install]
+WantedBy=multi-user.target

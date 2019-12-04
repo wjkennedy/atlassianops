@@ -1,0 +1,20 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+
+    - psql_db: jiracore
+    - psql_localhost_method: trust
+
+    # Uncomment these to do full setup
+    #- jiracore_license: "YOUR_LICENSE_WITHOUT_NEWLINES"
+    #- jiracore_admin_passwd: "A_SECURE_PASSWORD"
+
+  roles:
+
+    - postgres
+
+    # 1st run does full setup in devmode
+    #- { role: jiracore, jiracore_setup: true }
+    # 2nd reverts to non-devmode
+    - role: jiracore
