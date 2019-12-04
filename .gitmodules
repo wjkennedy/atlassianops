@@ -1,0 +1,4 @@
+[submodule "AtlassianProducts/atlassian-versions"]
+	path = AtlassianProducts/atlassian-versions
+	url = https://bitbucket.org/wkennedy/atlassian-versions
+	branch = master
