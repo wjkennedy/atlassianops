@@ -22,3 +22,7 @@
 	path = Cloud/one-offs
 	url = https://bitbucket.org/atlasauthority/one-offs
 	branch = master
+[submodule "Scripting/groovy-script-console"]
+	path = Scripting/groovy-script-console
+	url = https://bitbucket.org/fhess/groovy-script-console/
+	branch = master
