@@ -26,3 +26,7 @@
 	path = Scripting/groovy-script-console
 	url = https://bitbucket.org/fhess/groovy-script-console/
 	branch = master
+[submodule "Infrastructure/puppet-jira"]
+	path = Infrastructure/puppet-jira
+	url = https://github.com/voxpupuli/puppet-jira
+	branch = master
