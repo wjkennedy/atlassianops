@@ -14,3 +14,7 @@
 	path = Tools/super-productivity
 	url = https://github.com/johannesjo/super-productivity
 	branch = master
+[submodule "Tools/jira"]
+	path = Tools/jira
+	url = https://github.com/go-jira/jira
+	branch = master
