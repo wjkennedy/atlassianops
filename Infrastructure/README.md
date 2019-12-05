@@ -4,3 +4,5 @@
 
 [avva](https://bitbucket.org/wkennedy/avva/) - Deploy Atlassian products with Ansible. Test with Vagrant and VirtualBox.
 
+[docker-atlassian-jira](https://github.com/cptactionhank/docker-atlassian-jira) - Atlassian JIRA Core wrapped in a Docker image
+

@@ -30,3 +30,7 @@
 	path = Infrastructure/puppet-jira
 	url = https://github.com/voxpupuli/puppet-jira
 	branch = master
+[submodule "Infrastructure/docker-atlassian-jira"]
+	path = Infrastructure/docker-atlassian-jira
+	url = https://github.com/cptactionhank/docker-atlassian-jira
+	branch = master
