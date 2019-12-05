@@ -18,3 +18,7 @@
 	path = Tools/jira
 	url = https://github.com/go-jira/jira
 	branch = master
+[submodule "Cloud/one-offs"]
+	path = Cloud/one-offs
+	url = https://bitbucket.org/atlasauthority/one-offs
+	branch = master
