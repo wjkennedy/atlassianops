@@ -42,15 +42,15 @@ Command line and other interfaces
 )
 - [Go-jira](https://github.com/go-jira/jira) simple jira command line client in Go
 
-#Scripting Languages and Tools
+# Scripting Languages and Tools
 - [groovy console](https://bitbucket.org/fhess/groovy-script-console/src/master/) - This add-on provides a groovy script console for Atlassian products
 
-#Libraries
+# Libraries
 - jira: Python JIRA Library is the easiest way to automate JIRA
 
-#System and Application Inventory Tools
+# System and Application Inventory Tools
 
 - [atlassian-addons-audit-sheet](https://github.com/google/atlassian-addons-audit-sheet) - This tool will synchronize the list of Enabled User-Installed plugins in JIRA, Confluence, and Bitbucket with a Google Sheet for documentation and auditing.
 
-# Cloud Tools
+# System Tools
 - [Atlas Authority One Offs](https://bitbucket.org/atlasauthority/one-offs/) - JS & Python scripts because you don't get SQL in Cloud.
