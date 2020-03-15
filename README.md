@@ -13,7 +13,7 @@ Requirements vary by component and should be documented within the directory.
 
 - (Shallow) clone this repo:
 
-    `git clone  https://bitbucket.org/wkennedy/atlassian-versions --depth 1 --recurse-submodules
+    `git clone  https://bitbucket.org/wkennedy/atlassianops --recurse-submodules
 `
 If it's been a while:
 

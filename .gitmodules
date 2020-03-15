@@ -34,3 +34,6 @@
 	path = Infrastructure/docker-atlassian-jira
 	url = https://github.com/cptactionhank/docker-atlassian-jira
 	branch = master
+[submodule "Cloud/automatic-cloud-backup"]
+	path = Cloud/automatic-cloud-backup
+	url = https://bitbucket.org/atlassianlabs/automatic-cloud-backup
