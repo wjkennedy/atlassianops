@@ -54,3 +54,5 @@ Command line and other interfaces
 
 # System Tools
 - [Atlas Authority One Offs](https://bitbucket.org/atlasauthority/one-offs/) - JS & Python scripts because you don't get SQL in Cloud.
+
+- [Jira Go CLI](https://github.com/ankitpokhrel/jira-cli) - Golang CLI for Jira focused on search and navigation (Cloud only, but runs against on-prem with modification)
